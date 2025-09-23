@@ -33,3 +33,20 @@ for i in 0..<5 {
     print()
 }
 print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
+// Print inverted *
+for i in 0..<5 {
+    for j in stride(from: (5 - i), to: 0, by: -1) {
+        print("*", terminator: " ")
+    }
+    print()
+}
+print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
+// Print inverted nums
+for i in 0..<5 {
+    for j in stride(from: 1, through: (5 - i), by: +1) {
+        print(j, terminator: " ")
+    }
+    print()
+}
