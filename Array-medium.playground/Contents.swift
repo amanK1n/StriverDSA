@@ -1,4 +1,4 @@
-
+// All Permutation
 import Foundation
 
 func permute<T>(_ nums: [T]) -> [[T]] {
@@ -26,3 +26,5 @@ func permute<T>(_ nums: [T]) -> [[T]] {
 let array = [1, 2, 3]
 let permutations = permute(array)
 print(permutations)
+
+// Next Permutation
