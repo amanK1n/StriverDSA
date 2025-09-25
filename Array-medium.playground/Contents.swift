@@ -25,7 +25,7 @@ func permute<T>(_ nums: [T]) -> [[T]] {
 // Example:
 let array = [1, 2, 3]
 let permutations = permute(array)
-print("Ex-1: ", permutations)
+print("Ex-1: All permutations: ", permutations)
 
 // Next Permutation
 var nums = [2,1,5,4,3,0,0]
@@ -51,4 +51,16 @@ var index = -1
        }
        nums[(index + 1)...].reverse()
        }
-print("Ex-2: ", nums)
+print("Ex-2: Next permutation: ", nums)
+
+// Leaders in array
+var arr = [1, 2, 3, 2]
+var maxi = Int.min
+var leaders: [Int] = []
+for i in stride(from: arr.count - 1, through: 0, by: -1) {
+    if arr[i] > maxi {
+        leaders.append(arr[i])
+        maxi = arr[i]
+    }
+}
+print("Ex-3: Leaders: ", leaders)
