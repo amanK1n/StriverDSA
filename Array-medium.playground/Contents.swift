@@ -64,3 +64,24 @@ for i in stride(from: arr.count - 1, through: 0, by: -1) {
     }
 }
 print("Ex-3: Leaders: ", leaders)
+
+// Longest Consecutive
+var arr1 = [1,0,1,2]
+if nums.isEmpty { print("0") }
+     var longest = 1
+     var lastSmallest = Int.min
+     var currCount = 1
+    let numArr = Array(Set(arr1)).sorted()
+     for i in stride(from: 0, to: numArr.count, by: +1) {
+       
+       if ((numArr[i] - 1) == lastSmallest) {
+           currCount += 1
+           lastSmallest = numArr[i]
+       } else if ((numArr[i] - 1) != lastSmallest) {
+           currCount = 1
+           lastSmallest = numArr[i]
+       }
+       longest = max(longest, currCount)
+
+     }
+     print("Ex-4: Longest Consecutive: ", longest)
