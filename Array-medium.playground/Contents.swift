@@ -123,3 +123,60 @@ func setZeroes(_ matrix: inout [[Int]]) {
     }
 setZeroes(&matrix)
 print("Ex-5.1: Set Matrix ZERO: Brute:", matrix)
+
+// Set matrix zero: Better approach
+var matrix1 = [[1,1,1],[1,0,1],[1,1,1]]
+func setZeroesBetter(_ matrix: inout [[Int]]) {
+     var rowArr = Array(repeating: 0, count: matrix.count)
+     var colArr = Array(repeating: 0, count: matrix.first!.count)
+     for i in stride(from: 0, to: matrix.count, by: +1) {
+        for j in stride(from: 0, to: matrix.first!.count, by: +1) {
+            if matrix[i][j] == 0 {
+                rowArr[i] = 1
+                colArr[j] = 1
+            }
+        }
+     }
+     for i in stride(from: 0, to: matrix.count, by: +1) {
+        for j in stride(from: 0, to: matrix.first!.count, by: +1) {
+            if rowArr[i] == 1 || colArr[j] == 1 {
+                matrix[i][j] = 0
+            }
+        }
+    }
+}
+setZeroesBetter(&matrix1)
+print("Ex-5.2: Set Matrix ZERO: Better:", matrix1)
+
+// Rotate Matrix by 90: Brute
+var matrix3 = [[1,2,3],[4,5,6],[7,8,9]]
+func rotate(_ matrix: inout [[Int]]) {
+      var newMatrix: [[Int]] = matrix
+      let n = matrix.count
+      for i in 0..<matrix.count {
+        for j in 0..<matrix.count {
+            newMatrix[j][n - 1 - i] = matrix[i][j]
+        }
+      }
+      matrix = []
+      matrix = newMatrix
+}
+rotate(&matrix3)
+print("Ex-6.1: Rotate Matrix: Brute:", matrix3)
+// Rotate Matrix by 90: Optimal
+var matrix4 = [[1,2,3],[4,5,6],[7,8,9]]
+func rotateOptimal(_ matrix: inout [[Int]]) {
+    
+    // Transpose
+    for i in 0..<matrix.count - 1 {
+        for j in (i + 1)..<matrix.count {
+            (matrix[i][j], matrix[j][i]) = (matrix[j][i], matrix[i][j])
+        }
+    }
+    // Reverse
+    for i in 0..<matrix.count {
+        matrix[i].reverse()
+    }
+}
+rotateOptimal(&matrix4)
+print( "Ex-6.2: Rotate Matrix: Optimal:", matrix4)
