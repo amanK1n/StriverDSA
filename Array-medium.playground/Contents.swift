@@ -180,3 +180,50 @@ func rotateOptimal(_ matrix: inout [[Int]]) {
 }
 rotateOptimal(&matrix4)
 print( "Ex-6.2: Rotate Matrix: Optimal:", matrix4)
+
+// Traverse in Spiral order
+var m = [[1,2,3],[4,5,6],[7,8,9]]
+func spiralOrder(_ matrix: [[Int]]) -> [Int] {
+        // right -> bottom -> left -> top
+       
+        var resArr: [Int] = []
+         guard !matrix.isEmpty else { return resArr }
+        var top = 0
+        var bottom = matrix.count - 1
+        var left = 0
+        var right = matrix[0].count - 1
+        while (top <= bottom && left <= right) {
+        // Move right
+
+        for j in left...right {
+            resArr.append(matrix[top][j])
+        }
+        top += 1
+        // Move to bottom
+        if top <= bottom {
+        for i in top...bottom {
+            resArr.append(matrix[i][right])
+        }
+        right -= 1
+        }
+        // move left
+        if top <= bottom {
+        for j in stride(from: right, through: left, by: -1) {
+            resArr.append(matrix[bottom][j])
+        }
+        bottom -= 1
+        }
+        // move top
+        if left <= right {
+        for i in stride(from: bottom, through: top, by: -1) {
+            resArr.append(matrix[i][left])
+        }
+        left += 1
+        }
+      
+      }
+
+
+       return resArr
+    }
+print("Ex-7: Traverse Matrix spiral order: ", spiralOrder(m))
