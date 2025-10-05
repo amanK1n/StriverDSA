@@ -71,13 +71,13 @@ if nums.isEmpty { print("0") }
      var longest = 1
      var lastSmallest = Int.min
      var currCount = 1
-    let numArr = Array(Set(arr1)).sorted()
+    let numArr = Array(arr1).sorted()
      for i in stride(from: 0, to: numArr.count, by: +1) {
        
        if ((numArr[i] - 1) == lastSmallest) {
            currCount += 1
            lastSmallest = numArr[i]
-       } else if ((numArr[i] - 1) != lastSmallest) {
+       } else if ((numArr[i]) != lastSmallest) {
            currCount = 1
            lastSmallest = numArr[i]
        }
@@ -85,3 +85,41 @@ if nums.isEmpty { print("0") }
 
      }
      print("Ex-4: Longest Consecutive: ", longest)
+
+// Set Matrix Zero
+var matrix = [[1,1,1],[1,0,1],[1,1,1]]
+
+func setZeroes(_ matrix: inout [[Int]]) {
+        for i in stride(from: 0, to: matrix.count, by: +1) {
+            for j in stride(from: 0, to: matrix.first!.count, by: +1) {
+               if matrix[i][j] == 0 {
+                markRow(i: i)
+                markCol(j: j)
+               }
+            }
+        }
+        func markRow(i: Int) {
+        for j in stride(from: 0, to: matrix.first!.count, by: +1) {
+            if matrix[i][j] != 0 {
+                matrix[i][j] = -1010
+            }
+          }
+        }
+        func markCol(j: Int) {
+        for i in stride(from: 0, to: matrix.count, by: +1) {
+            if matrix[i][j] != 0 {
+                matrix[i][j] = -1010
+            }
+          }
+        }
+        for i in stride(from: 0, to: matrix.count, by: +1) {
+            for j in stride(from: 0, to: matrix.first!.count, by: +1) {
+               if matrix[i][j] == -1010 {
+                matrix[i][j] = 0
+               }
+            }
+        }
+        
+    }
+setZeroes(&matrix)
+print("Ex-5.1: Set Matrix ZERO: Brute:", matrix)
